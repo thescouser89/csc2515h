@@ -1,5 +1,5 @@
 function [f, df, frac_correct] = logistic_err(weights, data, labels, parameters)
-  %%  
+  %%
   % Computes the logistic regression negative log-likelihood, gradient,
   %  and the fraction of correctly predicted cases.
 
@@ -10,4 +10,17 @@ function [f, df, frac_correct] = logistic_err(weights, data, labels, parameters)
   %      parameters - a dict that contains a weight_regularization entry.
 
   %  Returns: negative log-likelihood, gradient, fraction of correct cases
-  error('Implement this function.')
+  p_label_zero = sigmoid(weights' * data')';
+  f = - (labels' * log(p_label_zero)) - ((1 - labels') * log(1 - p_label_zero));
+
+  df = labels' * data - (1 - p_label_zero)' * data;
+
+  frac_correct = 0.9;
+
+
+
+
+function result = sigmoid(value)
+    result = 1 ./ ( 1 + exp(-value) );
+
+

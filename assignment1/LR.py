@@ -100,11 +100,11 @@ if __name__ == '__main__':
 
     #YOU WILL NEED TO PUT IN BETTER NUMBERS BELOW
     parameters = {
-            'learning_rate'         : 0,
+            'learning_rate'         : 0.1,
             'weight_regularization' : 0,
-            'num_iterations'        : 2000}
+            'num_iterations'        : 30}
 
-    weights = 0.01*np.random.randn(D['data_train'].shape[1])  
+    weights = 0.01*np.random.randn(D['data_train'].shape[1])
     weights, train_history_noreg, valid_history_noreg = train_lr(
             D['data_train'],
             D['labels_train'],
