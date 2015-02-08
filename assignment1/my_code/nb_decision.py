@@ -21,7 +21,7 @@ def nb_decision(X,p_y,p_x_given_y):
     dims = X.shape[1]
 
     bayes_prob = np.zeros((cases, 2))
-    result = np.zeros((cases, 1))
+    result = np.zeros(cases)
 
     y_values = p_y.size
 
@@ -37,8 +37,8 @@ def nb_decision(X,p_y,p_x_given_y):
                 elif X[case][dim] == 0:
                     prob = prob * (1 - p_x_given_y[dim][y_value])
 
+
             bayes_prob[case][y_value] = prob
-        print y_value
 
     # now find out which class has the biggest probability
     for case in range(cases):
@@ -48,20 +48,4 @@ def nb_decision(X,p_y,p_x_given_y):
             result[case] = 1
 
     return result
-
-
-
-
-
-
-
-
-
-
-    # X: num_cases x dim
-    # p_y: prior class probabiliy
-    # p_x_given_y: num_dims x 2
-
-# need to return a vector of binary predictions, each entry corresponds to the
-# predicted label for its associated row in X
 
