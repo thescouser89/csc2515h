@@ -14,7 +14,7 @@ def checkgrad(fun, params, tol, *varargs):
     weights = np.copy(params)
     weights.shape = (params.size, 1)
 
-    # nexamples * ndimensions
+    # nexamples x ndimensions
     X = varargs[0]
 
     Y = varargs[1]

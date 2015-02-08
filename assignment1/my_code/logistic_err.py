@@ -4,7 +4,14 @@ def sigmoid(array):
     """ array should be a numpy array
     Return a numpy array which is the sigmoid of the input
     """
-    return 1.0 / (1.0 + np.exp(-1.0 * array))
+    return 1.0 / (1.0 + np.exp(-array))
+
+def one_minus_sigmoid(array):
+    """ array should be a numpy array
+    Return a numpy array which is the sigmoid of the input
+    """
+    exponential = np.exp(-array)
+    return exponential / (1.0 + exponential)
 
 def logistic_err(weights, data, labels, parameters):
     """
@@ -21,31 +28,33 @@ def logistic_err(weights, data, labels, parameters):
     """
     # weights: dim x 1
     # data:    cases x dim
+
+    # make these vectors
     weights.shape = (weights.size, 1)
     labels.shape = (labels.size, 1)
 
     # cases x 1
     p_label_zero = sigmoid(data.dot(weights))
-    p_label_one = 1 - p_label_zero
-    # print p_label_zero
-    # print p_label_one
-
+    p_label_one = one_minus_sigmoid(data.dot(weights))
     # labels is cases x 1
 
     # log_likelihood is a real number
-    log_likelihood = (labels.T.dot(p_label_one)) + \
-                     ((1 - labels.T).dot(p_label_zero))
-    log_likelihood = - log_likelihood
+    log_likelihood = -( labels.T.dot(np.log( p_label_one )) +
+                    (1.0 - labels.T).dot( np.log(p_label_zero) ) )
+
 
 
     # dim x 1
-    gradient = data.T.dot(labels) - data.T.dot(p_label_one)
+    gradient =  data.T.dot(labels) - data.T.dot(p_label_one)
+    gradient[weights.size - 1] = labels.sum() - p_label_one.sum()
 
-    predicted = np.round(p_label_one)
-    errors = np.sum(np.abs(predicted - labels))
+    if parameters['weight_regularization'] != 0:
+        gradient = gradient + parameters['weight_regularization'] * weights
 
-    frac_correct = (labels.size - errors) / labels.size
+    predicted = p_label_one
 
+    wrong = np.sum(np.round(np.abs(predicted - labels)))
+    frac_correct = (labels.size - wrong) / labels.size
 
     return log_likelihood, gradient, frac_correct
 

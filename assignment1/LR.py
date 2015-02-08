@@ -87,12 +87,12 @@ if __name__ == '__main__':
     D['labels_valid']  = D['labels_valid'].ravel()
     D['feature_names'] = D['feature_names'].ravel()
 
-	# Pad 1 to each train/validation data for the bias term
+    # Pad 1 to each train/validation data for the bias term
     D['data_train']=np.lib.pad(D['data_train'],((0,0),(0,1)),'constant',constant_values=1)
     D['data_valid']=np.lib.pad(D['data_valid'],((0,0),(0,1)),'constant',constant_values=1)
-	
+
     # Check gradients, make sure that this is a number close to 0.
-    check_lr_grad()
+    # check_lr_grad()
 
     # Train LR first without weight regularization.
     print 'Training logistic regression with no regularization...'
@@ -100,9 +100,9 @@ if __name__ == '__main__':
 
     #YOU WILL NEED TO PUT IN BETTER NUMBERS BELOW
     parameters = {
-            'learning_rate'         : 0.1,
+            'learning_rate'         : 0.01,
             'weight_regularization' : 0,
-            'num_iterations'        : 30}
+            'num_iterations'        : 1000}
 
     weights = 0.01*np.random.randn(D['data_train'].shape[1])
     weights, train_history_noreg, valid_history_noreg = train_lr(
