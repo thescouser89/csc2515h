@@ -30,14 +30,24 @@ if __name__ == '__main__':
     D = loadmat('data/a1spam.mat')
     D['labels_train'] = D['labels_train'].ravel()
     D['labels_valid']  = D['labels_valid'].ravel()
+    D['feature_names'] = D['feature_names'].ravel()
 
     p_y,p_x_given_y = train_nb(D['data_train'],D['labels_train'])
+
+    probability = p_y * p_x_given_y
+
+    k = np.sum(probability, 1)
+    print 'max'
+    print [str(s[0]) for s in D['feature_names'][k.argsort()[::-1][:10]]]
+    print 'min'
+    print [str(s[0]) for s in D['feature_names'][k.argsort()[:10]]]
+
     yhat_train = nb_decision(D['data_train'],p_y,p_x_given_y)
     yhat_valid = nb_decision(D['data_valid'],p_y,p_x_given_y)
+
 
     train_acc = np.mean(yhat_train == D['labels_train'])
     valid_acc = np.mean(yhat_valid == D['labels_valid'])
 
     print 'TRAIN ACC:%4.2f   VALID ACC:%4.2f' % (train_acc,valid_acc)
 
-    

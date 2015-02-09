@@ -14,7 +14,7 @@ def check_lr_grad():
     ndimensions = 10
 
     parameters = {
-            'learning_rate'         : 1,
+            'learning_rate'         : 0.01,
             'weight_regularization' : 0,
             'num_iterations'        : 2000}
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     D['data_valid']=np.lib.pad(D['data_valid'],((0,0),(0,1)),'constant',constant_values=1)
 
     # Check gradients, make sure that this is a number close to 0.
-    # check_lr_grad()
+    check_lr_grad()
 
     # Train LR first without weight regularization.
     print 'Training logistic regression with no regularization...'
@@ -102,7 +102,7 @@ if __name__ == '__main__':
     parameters = {
             'learning_rate'         : 0.01,
             'weight_regularization' : 0,
-            'num_iterations'        : 1000}
+            'num_iterations'        : 2000}
 
     weights = 0.01*np.random.randn(D['data_train'].shape[1])
     weights, train_history_noreg, valid_history_noreg = train_lr(
@@ -135,8 +135,16 @@ if __name__ == '__main__':
     print 'Features for the ten largest weights:'
     print [str(s[0]) for s in D['feature_names'][weights[:-1].argsort()[::-1][:10]]]
 
+    haha =  weights[:-1].argsort()[::-1][:10]
+    for item in haha:
+        print weights[item]
+
     print 'Features for the ten smallest weights:'
     print [str(s[0]) for s in D['feature_names'][weights[:-1].argsort()[:10]]]
+
+    haha =  weights[:-1].argsort()[:10]
+    for item in haha:
+        print weights[item]
 
     # Plot the training/validation accuracy of each run.
     plot_lr(train_history_noreg,valid_history_noreg,train_history_reg,valid_history_reg)

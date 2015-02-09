@@ -12,28 +12,26 @@ def checkgrad(fun, params, tol, *varargs):
     """
     # make weights a vector
     weights = np.copy(params)
-    weights.shape = (params.size, 1)
 
     # nexamples x ndimensions
     X = varargs[0]
 
     Y = varargs[1]
-    # make Y a vector
-    Y.shape = (Y.size, 1)
 
     # parameters is a dictionary. Has keys:
     #     'learning_rate', 'weight_regularization', 'num_iterations'
     parameters = varargs[2]
 
-    grad_err = np.zeros((weights.size, 1))
+    grad_err = np.zeros(weights.size)
 
     for i in range(grad_err.size):
-        error = np.zeros(grad_err.shape);
+        error = np.zeros(grad_err.size);
         error[i] = tol
 
         log_likelihood_plus, _, _ = fun(weights + error, X, Y, parameters)
         log_likelihood_minus, _, _ = fun(weights - error, X, Y, parameters)
-        grad_err[i] = (log_likelihood_plus - log_likelihood_minus) / (2 * tol)
+        _, gradient, _ = fun(weights, X, Y, parameters)
+        grad_err[i] = np.abs(gradient[i] -(log_likelihood_plus - log_likelihood_minus) / (2 * tol))
 
     return grad_err
 

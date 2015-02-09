@@ -56,6 +56,10 @@ def logistic_err(weights, data, labels, parameters):
     wrong = np.sum(np.round(np.abs(predicted - labels)))
     frac_correct = (labels.size - wrong) / labels.size
 
+    weights.shape = (weights.size, )
+    labels.shape = (labels.size, )
+    gradient.shape = (gradient.size, )
+
     return log_likelihood, gradient, frac_correct
 
 
