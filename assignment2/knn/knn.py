@@ -41,27 +41,28 @@ def find_neighbors(vec_to_find, k, train_data, train_target):
     return mode(k_targets)[0][0]
 
 
-mat = scipy.io.loadmat('../knn_subset.mat')
+if __name__ == '__main__':
+	mat = scipy.io.loadmat('../knn_subset.mat')
 
-# I'm assuming each row is a dimension, column is the number of data
-train_data = mat['train_data']          # (23, 4400)
-train_target = mat['train_targets']     # (4400, 1)
+	# I'm assuming each row is a dimension, column is the number of data
+	train_data = mat['train_data']          # (23, 4400)
+	train_target = mat['train_targets']     # (4400, 1)
 
-test_data = mat['test_data']            # (23, 2200)
-test_targets = mat['test_targets']      # (2200, 1)
+	test_data = mat['test_data']            # (23, 2200)
+	test_targets = mat['test_targets']      # (2200, 1)
 
 
-number_test_data = test_data.shape[1]
+	number_test_data = test_data.shape[1]
 
-test_data_T = test_data.T
+	test_data_T = test_data.T
 
-guessed_right = 0
+	guessed_right = 0
 
-print number_test_data
-for i in range(number_test_data):
+	print number_test_data
+	for i in range(number_test_data):
 
-	guessed_target = find_neighbors(test_data_T[i], 1, train_data, train_target)
-	if guessed_target == test_targets[i]:
-		guessed_right += 1
+		guessed_target = find_neighbors(test_data_T[i], 1, train_data, train_target)
+		if guessed_target == test_targets[i]:
+			guessed_right += 1
 
-print guessed_right
+	print guessed_right
