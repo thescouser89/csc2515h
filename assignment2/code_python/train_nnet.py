@@ -32,6 +32,12 @@ num_frames_per_pt = 15
 
 
 # DECIDE ON MEANINGFUL VALUES FOR THESE VARIABLES
+# ==============================================================================
+# eps: learning rate for SGD
+# l2:  coefficient for L2 regularizer
+# momentum: momentum for SGD
+# batch_size: batch size for SGD
+# ==============================================================================
 batch_size, eps, momentum, l2 = 1, 1, 1, 1
 
 

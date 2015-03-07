@@ -56,53 +56,73 @@ class layer(object):
         self._b_inc = zeros(self._b.shape)
 
     def apply_gradients(self, momentum, eps, l2=.0001):
-        """ NEED TO IMPLEMENT 
+        """ NEED TO IMPLEMENT
+
+        update wts_inc(b_inc) and use wts_inc(b_inc) to update the weight
+        (bias). You may want the gradient wts_grad(b_grad) as well as momentum
+        and learning rate.
         """
         raise Exception, "Unimplemented functionality"
 
     def back_prop(self, act_grad, data):
-        ''' 
-        NEED TO IMPLEMENT. 
+        '''
+        NEED TO IMPLEMENT.
         Feel free to add member variables.
-        back prop activation grad, and compute gradients. 
+        back prop activation grad, and compute gradients.
+
+        Back propagate activation gradients and compute gradients for one layer.
+        The output is a struct consisting of 3 parts, wts_grad, b_grad, 
+        input_grad
         '''
         raise Exception, "Unimplemented functionality"
         return input_grad
- 
+
 
 class sigmoid_layer(layer):
-    pass 
+    pass
 
     def fwd_prop(self, data):
-        """ NEED TO IMPLEMENT 
+        """ NEED TO IMPLEMENT
+
+        Perform a forward pass
         """
         raise Exception, "Unimplemented functionality"
         return probs
 
     def compute_act_grad_from_output_grad(self, output, output_grad):
-        """ NEED TO IMPLEMENT 
+        """ NEED TO IMPLEMENT
+
+        Compute the gradients wrt activations of sigmoid layer, the input are
+        the current activations of this layer and the gradients wrt outputs of
+        the sigmoid.
         """
         raise Exception, "Unimplemented functionality"
         return act_grad
 
- 
+
 class softmax_layer(layer):
     pass
 
     def fwd_prop(self, data):
-        """ NEED TO IMPLEMENT 
+        """ NEED TO IMPLEMENT
+
+        Perform a forward pass
         """
         raise Exception, "Unimplemented functionality"
         return probs
 
     def compute_act_gradients_from_targets(self, targets, output):
-        """ NEED TO IMPLEMENT 
+        """ NEED TO IMPLEMENT
+
+        Compute the gradients wrt activations of the softmax layer, given the
+        targets and the outputs of the softmax, the inputs are the current
+        activations of this layer and the target.
         """
         raise Exception, "Unimplemented functionality"
         return act_grad
 
 
-    @staticmethod 
+    @staticmethod
     def compute_accuraccy(probs, label_mat):
         num_correct = sum(probs.argmax(axis=0) == label_mat.argmax(axis=0))
         log_probs = sum(log(probs) * label_mat)

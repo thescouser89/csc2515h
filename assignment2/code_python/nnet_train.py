@@ -4,7 +4,7 @@
 from nnet_layers import *
 import sys, logging, os, scipy.io
 from numpy import zeros, savez, log
- 
+
 # create logger
 logger = logging.getLogger('nnet_train')
 logger.setLevel(logging.INFO)
@@ -25,7 +25,7 @@ class nn(object):
         pass
 
     def save(self, file_name):
-        params_dict = {} 
+        params_dict = {}
         params_dict['lst_layer_names'] = [layer.name for layer in self._lst_layers]
         params_dict['lst_layer_type'] = self._lst_layer_type
         params_dict['lst_num_hid'] = self._lst_num_hid
@@ -41,12 +41,12 @@ class nn(object):
         params_dict = scipy.io.loadmat(file_name)
         self._lst_layer_type, self._lst_num_hid, self._data_dim = \
                                            params_dict['lst_layer_type'], \
-                                               params_dict['lst_num_hid'], \
-                                                   params_dict['data_dim']
+                                           params_dict['lst_num_hid'], \
+                                           params_dict['data_dim']
 
         if not hasattr(self, '_lst_layers'):
             logging.info("Creating new layers from parameters in file: %s"%file_name)
-            self._lst_layers = [] 
+            self._lst_layers = []
             for (layer_name, layer_type) in zip(params_dict['lst_layer_names'],
                                                 self._lst_layer_type):
                 layer = create_empty_nnet_layer(layer_name, layer_type)
@@ -67,7 +67,7 @@ class nn(object):
         return self._lst_num_hid[-1]
 
     def create_nnet_from_def(self, lst_def):
-        self._layers = [] 
+        self._layers = []
         self.num_layers = len(lst_def)
 
         self._data_dim = lst_def[0].input_dim
@@ -83,24 +83,35 @@ class nn(object):
 
 
     def fwd_prop(self, data):
-        """ 
-        NEED TO IMPLEMENT. 
-        Return list of outputs per layer.
         """
+        NEED TO IMPLEMENT.
+        Return list of outputs per layer.
+
+        Do a pass over all layers, and return a list of activations for each
+        layer. You may want to call layer.fwd_prop for each layer
+        """
+        # data is (345, 1)
         raise Exception, "Unimplemented functionality"
         return lst_layer_outputs
 
 
     def back_prop(self, lst_layer_outputs, data, targets):
         """
-        NEED TO IMPLEMENT 
+        NEED TO IMPLEMENT
+
+        Perform a backpropagation, return 'self' with updated gradient of
+        weights and biases for all layers. You may want to call layer.back_prop
+        for each layer.
         """
         raise Exception, "Unimplemented functionality"
 
 
     def apply_gradients(self, eps, momentum, l2 = 0):
         """
-        NEED TO IMPLEMENT 
+        NEED TO IMPLEMENT
+
+        Perform stochastic gradient descent step. You may want to call
+        layer.apply_gradients for each layer.
         """
         raise Exception, "Unimplemented functionality"
 
@@ -114,13 +125,13 @@ class nn(object):
         pred_lst = []
         num_output_frames = 0
         for utt_num  in range(data_src.get_num_utterances()):
-            data = data_src.get_utterance_data(utt_num, 
+            data = data_src.get_utterance_data(utt_num,
                                                get_labels=False)
             lst_layer_outputs = self.fwd_prop(data)
             pred_lst.append(log(1e-32 + lst_layer_outputs[-1]))
             num_output_frames += pred_lst[-1].shape[1]
 
-        
+
         return pred_lst, num_output_frames
 
 
@@ -152,8 +163,8 @@ class nn(object):
     def train_for_one_epoch(self, data_src, eps, momentum, l2, batch_size):
         '''
         Work horse of the learning for one epoch. As long as the other
-        functions are working correctly, and satisfy the interface, 
-        there should be no need to change this function. 
+        functions are working correctly, and satisfy the interface,
+        there should be no need to change this function.
         '''
         try:
             self.__cur_epoch += 1
@@ -180,7 +191,7 @@ class nn(object):
             self.back_prop(lst_layer_outputs, data, label_mat)
             self.apply_gradients(eps, momentum, l2)
             self._tot_batch += 1
-        
+
 
         classif_err = classif_err_sum*100./num_pts
         logging.info("Epoch = %d, batch = %d, Classif Err = %.3f, lg(p) %.4f"%(\
