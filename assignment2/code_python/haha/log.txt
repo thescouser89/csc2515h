@@ -1,0 +1,1 @@
+2015-03-06 21:38:32,708 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat haha

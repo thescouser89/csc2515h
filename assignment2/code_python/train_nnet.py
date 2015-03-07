@@ -32,7 +32,7 @@ num_frames_per_pt = 15
 
 
 # DECIDE ON MEANINGFUL VALUES FOR THESE VARIABLES
-batch_size, eps, momentum, l2 = 0, 0, 0, 0, 0
+batch_size, eps, momentum, l2 = 1, 1, 1, 1
 
 
 train_src = speech_data.speech_data(arguments.train_db_path, num_frames_per_pt)
