@@ -92,11 +92,9 @@ class nn(object):
         """
         lst_layer_outputs = []
         # data is (345, 1)
-        print self.num_layers
-        print self._data_dim
-        print self._lst_layers
 
         previous_activation = data
+        lst_layer_outputs.append(previous_activation)
         for layer in self._lst_layers:
             previous_activation = layer.fwd_prop(previous_activation)
             lst_layer_outputs.append(previous_activation)
@@ -111,20 +109,34 @@ class nn(object):
         Perform a backpropagation, return 'self' with updated gradient of
         weights and biases for all layers. You may want to call layer.back_prop
         for each layer.
+
+        lst_layer_outputs is from fwd_prop output
         """
 
+        input_grad = 0
 
-        raise Exception, "Unimplemented functionality"
+        for index, layer in enumerate(reversed(self._lst_layers), start=1):
+            last_layer_output = lst_layer_outputs[-index]
+            # consider act_grad as dE_dxj
+            if isinstance(layer, softmax_layer):    # only for last layer
+                act_grad = layer.compute_act_gradients_from_targets(targets, last_layer_output)
+            else:   # for everything else
+                act_grad = layer.compute_act_grad_from_output_grad(last_layer_output, input_grad)
+
+            last_layer_input = lst_layer_outputs[-(index + 1)]
+
+            input_grad = layer.back_prop(act_grad, last_layer_input)
 
 
-    def apply_gradients(self, eps, momentum, l2 = 0):
+    def apply_gradients(self, eps, momentum, l2=0):
         """
         NEED TO IMPLEMENT
 
         Perform stochastic gradient descent step. You may want to call
         layer.apply_gradients for each layer.
         """
-        raise Exception, "Unimplemented functionality"
+        for layer in self._lst_layers:
+            layer.apply_gradients(momentum, eps, l2)
 
 
     def create_predictions(self, data_src):

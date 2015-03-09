@@ -65,8 +65,8 @@ class layer(object):
         TODO: apply linear regularizer later
         """
         # ==== IMPLEMENTED =====================================================
-        self._b_inc = eps.dot(self._b_grad) - momentum.dot(self._b_inc)
-        self._wts_inc = eps.dot(self._wts_grad) + momentum.dot(self._wts_inc)
+        self._b_inc = eps * (self._b_grad) - momentum * (self._b_inc)
+        self._wts_inc = eps * (self._wts_grad) + momentum * (self._wts_inc)
         # ======================================================================
 
     # ==========================================================================
@@ -82,8 +82,25 @@ class layer(object):
         Back propagate activation gradients and compute gradients for one layer.
         The output is a struct consisting of 3 parts, wts_grad, b_grad,
         input_grad
+
+        NEED TO FIND WTS_GRAD HERE and update the self object.
+
+        data is the layer input
+
+        input grad is dE_dyi
+        act_grad is dE_dyj
         '''
-        raise Exception, "Unimplemented functionality"
+        dE_dxj = act_grad
+        dE_wij = data.dot(act_grad.T)
+        self._wts_grad = dE_wij
+        self._b_grad = dE_dxj
+
+        input_grad = self._wts.dot(dE_dxj)
+
+        # now that we have found the wts_grad, let's update the bias and weight 
+        # itself
+        self._b = self._b - self._b_inc
+        self._wts = self._wts - self._wts_inc
         return input_grad
 
 
@@ -121,7 +138,10 @@ class sigmoid_layer(layer):
         the current activations of this layer and the gradients wrt outputs of
         the sigmoid.
         """
-        raise Exception, "Unimplemented functionality"
+        yj = output
+        dE_dyi = output_grad
+
+        act_grad = yj * (1 - yj) * dE_dyi
         return act_grad
 
 
@@ -149,7 +169,7 @@ class softmax_layer(layer):
         targets and the outputs of the softmax, the inputs are the current
         activations of this layer and the target.
         """
-        raise Exception, "Unimplemented functionality"
+        act_grad = output * (1 - output) * (output - targets)
         return act_grad
 
 
