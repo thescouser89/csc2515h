@@ -90,8 +90,17 @@ class nn(object):
         Do a pass over all layers, and return a list of activations for each
         layer. You may want to call layer.fwd_prop for each layer
         """
+        lst_layer_outputs = []
         # data is (345, 1)
-        raise Exception, "Unimplemented functionality"
+        print self.num_layers
+        print self._data_dim
+        print self._lst_layers
+
+        previous_activation = data
+        for layer in self._lst_layers:
+            previous_activation = layer.fwd_prop(previous_activation)
+            lst_layer_outputs.append(previous_activation)
+
         return lst_layer_outputs
 
 
@@ -103,6 +112,8 @@ class nn(object):
         weights and biases for all layers. You may want to call layer.back_prop
         for each layer.
         """
+
+
         raise Exception, "Unimplemented functionality"
 
 

@@ -61,9 +61,18 @@ class layer(object):
         update wts_inc(b_inc) and use wts_inc(b_inc) to update the weight
         (bias). You may want the gradient wts_grad(b_grad) as well as momentum
         and learning rate.
-        """
-        raise Exception, "Unimplemented functionality"
 
+        TODO: apply linear regularizer later
+        """
+        # ==== IMPLEMENTED =====================================================
+        self._b_inc = eps.dot(self._b_grad) - momentum.dot(self._b_inc)
+        self._wts_inc = eps.dot(self._wts_grad) + momentum.dot(self._wts_inc)
+        # ======================================================================
+
+    # ==========================================================================
+    # act_grad      :: gradient wrt activation function of this layer
+    # input_grad    :: gradients wrt the input of this layer
+    # ==========================================================================
     def back_prop(self, act_grad, data):
         '''
         NEED TO IMPLEMENT.
@@ -71,13 +80,21 @@ class layer(object):
         back prop activation grad, and compute gradients.
 
         Back propagate activation gradients and compute gradients for one layer.
-        The output is a struct consisting of 3 parts, wts_grad, b_grad, 
+        The output is a struct consisting of 3 parts, wts_grad, b_grad,
         input_grad
         '''
         raise Exception, "Unimplemented functionality"
         return input_grad
 
 
+# ==============================================================================
+# self.wts :: weights for each layer
+# b        :: bias for each layer
+# wts_grad :: gradient for weights you calculated from back_prop for each layer
+# wts_inc  :: actual update you will do for wts in a SGD step for each layer
+# b_grad   :: gradient for bias you calculated from back_prop for each layer
+# b_inc    :: actual update you will do for b in a SGD for each layer
+# ==============================================================================
 class sigmoid_layer(layer):
     pass
 
@@ -86,8 +103,16 @@ class sigmoid_layer(layer):
 
         Perform a forward pass
         """
-        raise Exception, "Unimplemented functionality"
-        return probs
+        # data is (345, 1)
+        # _wts is (345, 300)
+        # z = data.T * _wts => (1, 300)
+        z = data.T.dot(self._wts)
+        z = self._wts.T.dot(data) + self._b
+
+        # sigmoid :: use logistic regression
+        sigmoid = 1 / (1 + exp(-z))
+        # we want to return a column vector, not a row vector
+        return sigmoid
 
     def compute_act_grad_from_output_grad(self, output, output_grad):
         """ NEED TO IMPLEMENT
@@ -107,9 +132,15 @@ class softmax_layer(layer):
         """ NEED TO IMPLEMENT
 
         Perform a forward pass
+
+        weight is (300, 44)
+        data is (300, 1)
         """
-        raise Exception, "Unimplemented functionality"
-        return probs
+        z = self._wts.T.dot(data) + self._b
+        top_part = exp(z)
+        bottom_part = sum(top_part)
+        result = top_part / bottom_part
+        return result
 
     def compute_act_gradients_from_targets(self, targets, output):
         """ NEED TO IMPLEMENT

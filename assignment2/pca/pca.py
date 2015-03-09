@@ -10,8 +10,10 @@ def pca(matrix):
 
     matrix_T = matrix.T
     normalized_matrix = (matrix_T - matrix_T.mean(axis=0)) / matrix_T.std(axis=0)
+    print matrix_T.std(axis=0).shape
     eigen_val, eigen_vec = np.linalg.eig(np.cov(normalized_matrix.T))
     eigen_vec = eigen_vec[:, np.argsort(eigen_val)[::-1]].T
+    print eigen_vec
     return eigen_vec
 
 if __name__ == '__main__':
@@ -25,13 +27,13 @@ if __name__ == '__main__':
 
     V = pca(train_data)
 
-    new_data = V[:20].dot(train_data)
+    new_data = V[:10].dot(train_data)
     print new_data.shape
 
     number_test_data = test_data.shape[1]
     guessed_right = 0
 
-    test_data = V[:20].dot(test_data)
+    test_data = V[:10].dot(test_data)
     print test_data.shape
     test_data_T = test_data.T
     for i in range(number_test_data):
