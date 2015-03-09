@@ -123,6 +123,7 @@ class sigmoid_layer(layer):
         # data is (345, 1)
         # _wts is (345, 300)
         # z = data.T * _wts => (1, 300)
+        print data.T.shape
         z = data.T.dot(self._wts)
         z = self._wts.T.dot(data) + self._b
 

@@ -48,7 +48,7 @@ class nn(object):
             logging.info("Creating new layers from parameters in file: %s"%file_name)
             self._lst_layers = []
             for (layer_name, layer_type) in zip(params_dict['lst_layer_names'],
-                                                self._lst_layer_type):
+                                                self._lst_layer_type[0]):
                 layer = create_empty_nnet_layer(layer_name, layer_type)
                 layer.copy_params_from_dict(params_dict)
                 self._lst_layers.append(layer)
