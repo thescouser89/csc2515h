@@ -66,7 +66,11 @@ class layer(object):
         """
         # ==== IMPLEMENTED =====================================================
         self._b_inc = eps * (self._b_grad) - momentum * (self._b_inc)
-        self._wts_inc = eps * (self._wts_grad) + momentum * (self._wts_inc)
+        self._wts_inc = eps * (self._wts_grad) - momentum * (self._wts_inc)
+        # now that we have found the wts_grad, let's update the bias and weight
+        # itself
+        self._b = self._b - self._b_inc
+        self._wts = self._wts - self._wts_inc
         # ======================================================================
 
     # ==========================================================================
@@ -88,7 +92,7 @@ class layer(object):
         data is the layer input
 
         input grad is dE_dyi
-        act_grad is dE_dyj
+        act_grad is dE_dxj
         '''
         dE_dxj = act_grad
         dE_wij = data.dot(act_grad.T)
@@ -97,10 +101,6 @@ class layer(object):
 
         input_grad = self._wts.dot(dE_dxj)
 
-        # now that we have found the wts_grad, let's update the bias and weight 
-        # itself
-        self._b = self._b - self._b_inc
-        self._wts = self._wts - self._wts_inc
         return input_grad
 
 
@@ -139,9 +139,9 @@ class sigmoid_layer(layer):
         the sigmoid.
         """
         yj = output
-        dE_dyi = output_grad
+        dE_dyj = output_grad
 
-        act_grad = yj * (1 - yj) * dE_dyi
+        act_grad = yj * (1 - yj) * dE_dyj
         return act_grad
 
 
