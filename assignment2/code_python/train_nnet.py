@@ -38,7 +38,7 @@ num_frames_per_pt = 15
 # momentum: momentum for SGD
 # batch_size: batch size for SGD
 # ==============================================================================
-batch_size, eps, momentum, l2 = 32, 0.03, 0.9, 0
+batch_size, eps, momentum, l2 = 10, 0.03, 0.9, 0
 
 
 train_src = speech_data.speech_data(arguments.train_db_path, num_frames_per_pt)

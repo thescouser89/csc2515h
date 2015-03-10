@@ -117,14 +117,12 @@ class nn(object):
 
         for index, layer in enumerate(reversed(self._lst_layers), start=1):
             last_layer_output = lst_layer_outputs[-index]
+            last_layer_input = lst_layer_outputs[-(index + 1)]
             # consider act_grad as dE_dxj
             if isinstance(layer, softmax_layer):    # only for last layer
                 act_grad = layer.compute_act_gradients_from_targets(targets, last_layer_output)
             else:   # for everything else
                 act_grad = layer.compute_act_grad_from_output_grad(last_layer_output, input_grad)
-
-            last_layer_input = lst_layer_outputs[-(index + 1)]
-
             input_grad = layer.back_prop(act_grad, last_layer_input)
 
 

@@ -3,6 +3,7 @@
 
 from numpy import sqrt, isnan, Inf, dot, zeros, exp, log, sum
 from numpy.random import randn
+import numpy
 
 SIGMOID_LAYER = 0
 SOFTMAX_LAYER = 1
@@ -94,12 +95,13 @@ class layer(object):
         input grad is dE_dyi
         act_grad is dE_dxj
         '''
-        dE_dxj = act_grad
+        dE_dxj = sum(act_grad, axis=1)
+        dE_dxj.shape = (dE_dxj.shape[0], 1)
         dE_wij = data.dot(act_grad.T)
         self._wts_grad = dE_wij
         self._b_grad = dE_dxj
 
-        input_grad = self._wts.dot(dE_dxj)
+        input_grad = self._wts.dot(act_grad)
 
         return input_grad
 
@@ -122,9 +124,7 @@ class sigmoid_layer(layer):
         """
         # data is (345, 1)
         # _wts is (345, 300)
-        # z = data.T * _wts => (1, 300)
-        print data.T.shape
-        z = data.T.dot(self._wts)
+        # (300, 345) x (345, 1)
         z = self._wts.T.dot(data) + self._b
 
         # sigmoid :: use logistic regression
@@ -157,9 +157,10 @@ class softmax_layer(layer):
         weight is (300, 44)
         data is (300, 1)
         """
+        # z is (44, 5)
         z = self._wts.T.dot(data) + self._b
         top_part = exp(z)
-        bottom_part = sum(top_part)
+        bottom_part = sum(top_part, axis=0)
         result = top_part / bottom_part
         return result
 
