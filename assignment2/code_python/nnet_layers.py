@@ -95,11 +95,15 @@ class layer(object):
         input grad is dE_dyi
         act_grad is dE_dxj
         '''
+        batch_size = data.shape[1]
+
         dE_dxj = sum(act_grad, axis=1)
         dE_dxj.shape = (dE_dxj.shape[0], 1)
         dE_wij = data.dot(act_grad.T)
-        self._wts_grad = dE_wij
-        self._b_grad = dE_dxj
+
+        self._b_grad = dE_dxj / batch_size
+
+        self._wts_grad = dE_wij / batch_size
 
         input_grad = self._wts.dot(act_grad)
 

@@ -1,2 +1,4 @@
-2015-03-09 21:04:30,805 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat haha
-2015-03-09 21:05:10,606 - root - INFO - Epoch = 1, batch = 11707, Classif Err = 87.171, lg(p) -3.2808
+2015-03-09 21:14:51,554 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat haha
+2015-03-09 21:15:25,450 - root - INFO - Epoch = 1, batch = 11707, Classif Err = 88.385, lg(p) -3.4307
+2015-03-09 21:15:58,409 - root - INFO - Epoch = 2, batch = 11707, Classif Err = 81.092, lg(p) -3.1971
+2015-03-09 21:16:33,174 - root - INFO - Epoch = 3, batch = 11707, Classif Err = 75.205, lg(p) -3.1349
