@@ -1,0 +1,16 @@
+2015-03-12 00:43:12,384 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat hoho
+2015-03-12 00:44:39,527 - root - INFO - Epoch = 1, batch = 11707, Classif Err = 61.845, lg(p) -2.3852
+2015-03-12 00:44:43,726 - root - INFO - TESTING Classif Err = 51.087, lg(p) -1.8434
+
+2015-03-12 00:46:10,152 - root - INFO - Epoch = 2, batch = 11707, Classif Err = 45.968, lg(p) -1.6479
+2015-03-12 00:46:14,255 - root - INFO - TESTING Classif Err = 42.470, lg(p) -1.5178
+
+2015-03-12 00:47:39,366 - root - INFO - Epoch = 3, batch = 11707, Classif Err = 40.227, lg(p) -1.4579
+2015-03-12 00:47:43,441 - root - INFO - TESTING Classif Err = 40.730, lg(p) -1.4567
+
+2015-03-12 00:49:09,342 - root - INFO - Epoch = 4, batch = 11707, Classif Err = 38.173, lg(p) -1.4127
+2015-03-12 00:49:13,261 - root - INFO - TESTING Classif Err = 38.896, lg(p) -1.4115
+
+2015-03-12 00:50:39,444 - root - INFO - Epoch = 5, batch = 11707, Classif Err = 38.081, lg(p) -1.4532
+2015-03-12 00:50:43,988 - root - INFO - TESTING Classif Err = 39.606, lg(p) -1.5364
+

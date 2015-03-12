@@ -1,4 +1,91 @@
-2015-03-09 21:14:51,554 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat haha
-2015-03-09 21:15:25,450 - root - INFO - Epoch = 1, batch = 11707, Classif Err = 88.385, lg(p) -3.4307
-2015-03-09 21:15:58,409 - root - INFO - Epoch = 2, batch = 11707, Classif Err = 81.092, lg(p) -3.1971
-2015-03-09 21:16:33,174 - root - INFO - Epoch = 3, batch = 11707, Classif Err = 75.205, lg(p) -3.1349
+2015-03-12 00:40:59,086 - root - INFO - python train_nnet.py ../data/train.mat ../data/dev.mat haha
+2015-03-12 00:41:34,614 - root - INFO - Epoch = 1, batch = 11707, Classif Err = 62.488, lg(p) -2.5342
+2015-03-12 00:41:36,579 - root - INFO - TESTING Classif Err = 49.076, lg(p) -2.0193
+
+2015-03-12 00:42:11,706 - root - INFO - Epoch = 2, batch = 11707, Classif Err = 45.442, lg(p) -1.7768
+2015-03-12 00:42:13,703 - root - INFO - TESTING Classif Err = 43.240, lg(p) -1.5616
+
+2015-03-12 00:42:48,350 - root - INFO - Epoch = 3, batch = 11707, Classif Err = 39.296, lg(p) -1.4361
+2015-03-12 00:42:50,361 - root - INFO - TESTING Classif Err = 36.899, lg(p) -1.3342
+
+2015-03-12 00:43:30,850 - root - INFO - Epoch = 4, batch = 11707, Classif Err = 35.158, lg(p) -1.2962
+2015-03-12 00:43:33,673 - root - INFO - TESTING Classif Err = 35.685, lg(p) -1.2837
+
+2015-03-12 00:44:28,282 - root - INFO - Epoch = 5, batch = 11707, Classif Err = 32.417, lg(p) -1.1922
+2015-03-12 00:44:30,943 - root - INFO - TESTING Classif Err = 33.270, lg(p) -1.1909
+
+2015-03-12 00:45:23,826 - root - INFO - Epoch = 6, batch = 11707, Classif Err = 30.156, lg(p) -1.1166
+2015-03-12 00:45:26,491 - root - INFO - TESTING Classif Err = 32.094, lg(p) -1.1425
+
+2015-03-12 00:46:18,827 - root - INFO - Epoch = 7, batch = 11707, Classif Err = 28.265, lg(p) -1.0515
+2015-03-12 00:46:21,441 - root - INFO - TESTING Classif Err = 31.128, lg(p) -1.1165
+
+2015-03-12 00:47:14,002 - root - INFO - Epoch = 8, batch = 11707, Classif Err = 26.798, lg(p) -1.0035
+2015-03-12 00:47:16,608 - root - INFO - TESTING Classif Err = 30.655, lg(p) -1.0779
+
+2015-03-12 00:48:11,968 - root - INFO - Epoch = 9, batch = 11707, Classif Err = 25.614, lg(p) -0.9602
+2015-03-12 00:48:14,640 - root - INFO - TESTING Classif Err = 30.033, lg(p) -1.0761
+
+2015-03-12 00:49:07,634 - root - INFO - Epoch = 10, batch = 11707, Classif Err = 24.443, lg(p) -0.9222
+2015-03-12 00:49:10,300 - root - INFO - TESTING Classif Err = 29.114, lg(p) -1.0313
+
+2015-03-12 00:50:03,512 - root - INFO - Epoch = 11, batch = 11707, Classif Err = 23.471, lg(p) -0.8908
+2015-03-12 00:50:06,082 - root - INFO - TESTING Classif Err = 28.867, lg(p) -1.0288
+
+2015-03-12 00:50:54,876 - root - INFO - Epoch = 12, batch = 11707, Classif Err = 22.641, lg(p) -0.8624
+2015-03-12 00:50:57,204 - root - INFO - TESTING Classif Err = 28.487, lg(p) -1.0173
+
+2015-03-12 00:51:32,769 - root - INFO - Epoch = 13, batch = 11707, Classif Err = 21.901, lg(p) -0.8390
+2015-03-12 00:51:34,716 - root - INFO - TESTING Classif Err = 28.867, lg(p) -1.0265
+
+2015-03-12 00:52:09,857 - root - INFO - Epoch = 14, batch = 11707, Classif Err = 21.139, lg(p) -0.8166
+2015-03-12 00:52:12,084 - root - INFO - TESTING Classif Err = 27.758, lg(p) -1.0010
+
+2015-03-12 00:52:51,281 - root - INFO - Epoch = 15, batch = 11707, Classif Err = 20.723, lg(p) -0.7990
+2015-03-12 00:52:53,314 - root - INFO - TESTING Classif Err = 28.410, lg(p) -1.0178
+
+2015-03-12 00:53:33,588 - root - INFO - Epoch = 16, batch = 11707, Classif Err = 20.046, lg(p) -0.7802
+2015-03-12 00:53:35,659 - root - INFO - TESTING Classif Err = 28.050, lg(p) -1.0041
+
+2015-03-12 00:54:10,784 - root - INFO - Epoch = 17, batch = 11707, Classif Err = 19.458, lg(p) -0.7649
+2015-03-12 00:54:12,745 - root - INFO - TESTING Classif Err = 27.704, lg(p) -0.9924
+
+2015-03-12 00:54:46,782 - root - INFO - Epoch = 18, batch = 11707, Classif Err = 19.036, lg(p) -0.7492
+2015-03-12 00:54:48,739 - root - INFO - TESTING Classif Err = 27.564, lg(p) -0.9871
+
+2015-03-12 00:55:21,984 - root - INFO - Epoch = 19, batch = 11707, Classif Err = 18.583, lg(p) -0.7347
+2015-03-12 00:55:24,064 - root - INFO - TESTING Classif Err = 28.176, lg(p) -1.0184
+
+2015-03-12 00:55:57,146 - root - INFO - Epoch = 20, batch = 11707, Classif Err = 18.160, lg(p) -0.7250
+2015-03-12 00:55:59,092 - root - INFO - TESTING Classif Err = 27.728, lg(p) -1.0009
+
+2015-03-12 00:56:31,963 - root - INFO - Epoch = 21, batch = 11707, Classif Err = 17.848, lg(p) -0.7133
+2015-03-12 00:56:33,911 - root - INFO - TESTING Classif Err = 27.958, lg(p) -1.0062
+
+2015-03-12 00:57:07,549 - root - INFO - Epoch = 22, batch = 11707, Classif Err = 17.554, lg(p) -0.7034
+2015-03-12 00:57:09,498 - root - INFO - TESTING Classif Err = 28.473, lg(p) -1.0267
+
+2015-03-12 00:57:43,204 - root - INFO - Epoch = 23, batch = 11707, Classif Err = 17.229, lg(p) -0.6936
+2015-03-12 00:57:45,153 - root - INFO - TESTING Classif Err = 28.347, lg(p) -1.0249
+
+2015-03-12 00:58:20,978 - root - INFO - Epoch = 24, batch = 11707, Classif Err = 16.871, lg(p) -0.6844
+2015-03-12 00:58:23,252 - root - INFO - TESTING Classif Err = 27.849, lg(p) -1.0144
+
+2015-03-12 00:59:02,107 - root - INFO - Epoch = 25, batch = 11707, Classif Err = 16.732, lg(p) -0.6747
+2015-03-12 00:59:04,144 - root - INFO - TESTING Classif Err = 28.005, lg(p) -1.0306
+
+2015-03-12 00:59:46,081 - root - INFO - Epoch = 26, batch = 11707, Classif Err = 16.464, lg(p) -0.6713
+2015-03-12 00:59:48,267 - root - INFO - TESTING Classif Err = 27.498, lg(p) -1.0060
+
+2015-03-12 01:00:23,291 - root - INFO - Epoch = 27, batch = 11707, Classif Err = 16.143, lg(p) -0.6623
+2015-03-12 01:00:25,248 - root - INFO - TESTING Classif Err = 28.170, lg(p) -1.0363
+
+2015-03-12 01:00:59,615 - root - INFO - Epoch = 28, batch = 11707, Classif Err = 16.154, lg(p) -0.6597
+2015-03-12 01:01:01,577 - root - INFO - TESTING Classif Err = 27.743, lg(p) -1.0246
+
+2015-03-12 01:01:38,055 - root - INFO - Epoch = 29, batch = 11707, Classif Err = 15.927, lg(p) -0.6538
+2015-03-12 01:01:40,007 - root - INFO - TESTING Classif Err = 28.738, lg(p) -1.0677
+
+2015-03-12 01:02:15,017 - root - INFO - Epoch = 30, batch = 11707, Classif Err = 15.871, lg(p) -0.6527
+2015-03-12 01:02:16,975 - root - INFO - TESTING Classif Err = 28.213, lg(p) -1.0404
+

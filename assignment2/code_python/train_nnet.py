@@ -38,16 +38,16 @@ num_frames_per_pt = 15
 # momentum: momentum for SGD
 # batch_size: batch size for SGD
 # ==============================================================================
-batch_size, eps, momentum, l2 = 10, 0.03, 0.9, 0
+batch_size, eps, momentum, l2 = 10, 0.3, 0.2, 0
 
 
 train_src = speech_data.speech_data(arguments.train_db_path, num_frames_per_pt)
 validation_src = speech_data.speech_data(arguments.dev_db_path, 
                                          num_frames_per_pt)
 layer1_def = nnet_layers.layer_definition("Layer1", nnet_layers.SIGMOID_LAYER,
-                                         train_src.get_data_dim(), 300, 0.01)
+                                         train_src.get_data_dim(), 500, 0.01)
 layer2_def = nnet_layers.layer_definition("Layer2", nnet_layers.SOFTMAX_LAYER,
-                                         300, train_src.get_target_dim(), 0.01)
+                                         500, train_src.get_target_dim(), 0.01)
 
 ## FILL IN SOME PRE-PROCESS  INSTRUCTIONS HERE
 train_src.normalize_data()
@@ -64,8 +64,14 @@ nn_train.create_nnet_from_def(lst_def)
 # where the model gets written to.
 param_file = os.path.join(arguments.output_fldr, "model.mat")
 
+best_dev_accuracy = 0
 for i in range(arguments.max_epochs):
     nn_train.train_for_one_epoch(train_src, eps, momentum, l2, batch_size)
-
+    accuracy, lg_p = nn_train.test(validation_src)
     # CODE FOR CONTROLLING OVERFITTING...GOES SOMEWHERE AROUND HERE..
+    if best_dev_accuracy + 0.01 > accuracy:
+        break
 
+    best_dev_accuracy = accuracy
+
+#nn_train.save(param_file)
