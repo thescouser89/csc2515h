@@ -50,6 +50,9 @@ layer2_def = nnet_layers.layer_definition("Layer2", nnet_layers.SOFTMAX_LAYER,
                                          300, train_src.get_target_dim(), 0.01)
 
 ## FILL IN SOME PRE-PROCESS  INSTRUCTIONS HERE
+train_src.normalize_data()
+validation_src.normalize_data()
+
 
 
 # Definition of multi layer neural network
